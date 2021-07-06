@@ -1,6 +1,7 @@
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler;
 import tech.tablesaw.aggregate.Summarizer;
+import tech.tablesaw.api.DoubleColumn;
 import tech.tablesaw.api.StringColumn;
 import tech.tablesaw.api.Table;
 import java.util.function.Function;
@@ -109,15 +110,28 @@ public class ManipulateDF {
         }
 
     }
-/*
-     public void factorizeYears(){
-         StringColumn factYears = null;
-         StringColumn YearsExp = (StringColumn) t_clean.column ("YearsExp");
-         List<String> years = t_clean.stringColumn("YearsExp").asList().stream().map(row ->str.replaceAll("[^0-9]", ""))
+    public void factorizeYears(){
+        Map<Integer,Integer> yearsMap  =new HashMap<Integer,Integer>();
+        StringColumn yearsExp = (StringColumn) t_clean.column ("YearsExp");
+        List<Number > yearValues = new ArrayList<Number> ();
+        Integer index = 0;
+        for (String v : yearsExp) {
+            Integer temp = null;
+            if (v.replaceAll("[^0-9]", "")== ""){
+                temp =0;
+            }else{ temp = Integer.parseInt(v.replaceAll("[^0-9]", "")); }
+            if (yearsMap.containsKey(temp)==false){
+                yearsMap.put(temp,index);
+                yearValues.add(index);
+                index +=1;
+            }
+            else{ yearValues.add(yearsMap.get(temp)); }
+        }
 
-     }
-
- */
+        DoubleColumn yearsColumn = DoubleColumn.create("factorized years", yearValues);
+        t_clean.addColumns (yearsColumn);
+        System.out.println(t_clean.first(10));
+    }
 
 
     }
