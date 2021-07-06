@@ -1,9 +1,12 @@
 package restfulservice.utils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Base64;
 
-public class UtilBase64Image {
+public class Base64ImageEncoder {
     public static String encoder(String imagePath) {
         File file = new File(imagePath);
         try (FileInputStream imageInFile = new FileInputStream(file)) {
@@ -19,17 +22,5 @@ public class UtilBase64Image {
             System.out.println("Exception while reading the Image " + ioe);
         }
         return null;
-    }
-
-    public static void decoder(String base64Image, String pathFile) {
-        try (FileOutputStream imageOutFile = new FileOutputStream(pathFile)) {
-            // Converting a Base64 String into Image byte array
-            byte[] imageByteArray = Base64.getDecoder().decode(base64Image);
-            imageOutFile.write(imageByteArray);
-        } catch (FileNotFoundException e) {
-            System.out.println("Image not found" + e);
-        } catch (IOException ioe) {
-            System.out.println("Exception while reading the Image " + ioe);
-        }
     }
 }
