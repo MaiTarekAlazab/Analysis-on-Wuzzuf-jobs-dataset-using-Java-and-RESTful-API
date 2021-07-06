@@ -64,28 +64,35 @@ public class Consumer {
 
     public void getClean() throws IOException {
         final String uri = "http://localhost:8080/data/clean";
-        Map response = restTemplate.getForObject(uri, Map.class);
-        System.out.println(response);
+        Map<String,String> response = restTemplate.getForObject(uri, Map.class);
+        System.out.println("Most important required skills: ");
+        for (Map.Entry<String, String> entry: response.entrySet()) {
+            System.out.println(entry.getKey() + " table shape is: " + entry.getValue());
+        }
     }
 
     public void getJob() throws IOException {
         final String uri = "http://localhost:8080/data/job";
-        Map response = restTemplate.getForObject(uri, Map.class);
+        Map<String, Long> response = restTemplate.getForObject(uri, Map.class);
+        System.out.println("The number of jobs in each company are: ");
         System.out.println(response);
     }
     public void getMostTitles() throws IOException {
         final String uri = "http://localhost:8080/data/titles";
-        Map response = restTemplate.getForObject(uri, Map.class);
+        Map <String, Long> response = restTemplate.getForObject(uri, Map.class);
+        System.out.println("The number of each title in the data et: ");
         System.out.println(response);
     }
     public void getMostAreas() throws IOException {
-        final String uri = "http://localhost:8080/data/titles";
-        Map response = restTemplate.getForObject(uri, Map.class);
+        final String uri = "http://localhost:8080/data/areas";
+        Map<String,Long> response = restTemplate.getForObject(uri, Map.class);
+        System.out.println("The number of occurrence of each area in the dataset: ");
         System.out.println(response);
     }
     public void getSkills() throws IOException {
         final String uri = "http://localhost:8080/data/skills";
         Map response = restTemplate.getForObject(uri, Map.class);
+        System.out.println("The number of occurrence of each skill in the dataset: ");
         System.out.println(response);
     }
     public void getCleanedDataAfterFactorizing() throws IOException {
