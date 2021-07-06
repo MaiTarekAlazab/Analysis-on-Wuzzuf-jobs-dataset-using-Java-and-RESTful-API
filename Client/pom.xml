@@ -59,6 +59,11 @@
             <artifactId>smile-io</artifactId>
             <version>2.6.0</version>
         </dependency>
+        <dependency>
+            <groupId>net.sf.supercsv</groupId>
+            <artifactId>super-csv</artifactId>
+            <version>2.3.1</version>
+        </dependency>
 
     </dependencies>
 

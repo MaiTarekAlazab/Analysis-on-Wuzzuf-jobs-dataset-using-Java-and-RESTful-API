@@ -1,0 +1,9 @@
+Column Type,Index,Column Name
+STRING,0,Title
+STRING,1,Company
+STRING,2,Location
+STRING,3,Type
+STRING,4,Level
+STRING,5,YearsExp
+STRING,6,Country
+STRING,7,Skills

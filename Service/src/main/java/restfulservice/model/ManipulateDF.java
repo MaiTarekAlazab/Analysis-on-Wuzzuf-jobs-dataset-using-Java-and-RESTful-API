@@ -3,6 +3,7 @@ package restfulservice.model;
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler;
 import tech.tablesaw.api.DoubleColumn;
+import tech.tablesaw.api.Row;
 import tech.tablesaw.api.StringColumn;
 import tech.tablesaw.api.Table;
 
@@ -16,9 +17,9 @@ import static java.util.stream.Collectors.toMap;
 public class ManipulateDF {
     private Table t;
     private Table t_clean;
+
     public ManipulateDF(String filename) throws IOException {
         try {
-
             t = Table.read().csv(filename);
         } catch (IOException e) {
             e.printStackTrace();
@@ -28,12 +29,15 @@ public class ManipulateDF {
 
     public void displayData(){
         System.out.println(t.first(10));
-
     }
 
-    public void displayStructure(){
-        System.out.println(t.structure());
-        System.out.println(t.summary());
+    public Table displayStructure(){
+        return t.structure();
+    }
+
+    //ADDED
+    public int getRowCount(){
+        return t.rowCount();
     }
 
     public void cleanDataframe(){

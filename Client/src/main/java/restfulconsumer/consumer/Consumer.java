@@ -1,5 +1,12 @@
 package restfulconsumer.consumer;
 import org.springframework.web.client.RestTemplate;
+import restfulconsumer.utils.JSONDecoder;
+import restfulconsumer.utils.TableDecoder;
+import tech.tablesaw.api.Table;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class Consumer {
     private RestTemplate restTemplate;
@@ -10,10 +17,23 @@ public class Consumer {
 
     public void getHello()
     {
-        final String uri = "http://localhost:8080/test";
+        final String uri = "http://localhost:8080/data/test";
         String result = restTemplate.getForObject(uri, String.class);
         System.out.println(result);
     }
+
+    public void getStructure() throws IOException {
+        final String uri = "http://localhost:8080/data/structure";
+        String response = restTemplate.getForObject(uri, String.class);
+
+        //decode
+        TableDecoder Tdecoder = new TableDecoder();
+        JSONDecoder Jdecoder = new JSONDecoder();
+        Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
+        Table t = Tdecoder.decode(map);
+        System.out.println(t.printAll());
+    }
+
 
     /*public static void getTestConsume() throws IOException {
         final String uri = "http://localhost:8080/consume";
