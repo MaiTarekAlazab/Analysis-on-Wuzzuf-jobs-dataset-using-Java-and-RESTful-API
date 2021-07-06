@@ -1,4 +1,4 @@
-package utils;
+package restfulconsumer.utils;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;

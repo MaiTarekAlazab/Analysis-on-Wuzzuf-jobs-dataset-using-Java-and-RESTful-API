@@ -1,4 +1,4 @@
-package utils;
+package restfulconsumer.utils;
 
 import java.io.*;
 import java.util.Base64;
