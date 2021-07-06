@@ -147,6 +147,7 @@ public class ManipulateDF {
         StringColumn yearsExp = (StringColumn) t_clean.column ("YearsExp");
         List<Number > yearValues = new ArrayList<Number> ();
         Integer index = 0;
+
         for (String v : yearsExp) {
             Integer temp = null;
             if (v.replaceAll("[^0-9]", "")== ""){
@@ -160,10 +161,13 @@ public class ManipulateDF {
             else{ yearValues.add(yearsMap.get(temp)); }
         }
 
+
         DoubleColumn yearsColumn = DoubleColumn.create("factorized years", yearValues);
         t_clean.addColumns (yearsColumn);
         System.out.println(t_clean.first(10));
     }
+
+
 
 
     }

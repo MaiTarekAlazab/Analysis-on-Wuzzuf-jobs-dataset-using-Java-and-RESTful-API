@@ -58,7 +58,6 @@ public class Consumer {
         TableDecoder Tdecoder = new TableDecoder();
         JSONDecoder Jdecoder = new JSONDecoder();
         Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
-        System.out.println(map);
         Table t = Tdecoder.decode(map);
         System.out.println(t.printAll());
     }
@@ -88,6 +87,15 @@ public class Consumer {
         final String uri = "http://localhost:8080/data/skills";
         Map response = restTemplate.getForObject(uri, Map.class);
         System.out.println(response);
+    }
+    public void getCleanedDataAfterFactorizing() throws IOException {
+        final String uri = "http://localhost:8080/data/factorize";
+        String response = restTemplate.getForObject(uri, String.class);
+        TableDecoder Tdecoder = new TableDecoder();
+        JSONDecoder Jdecoder = new JSONDecoder();
+        Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
+        Table t = Tdecoder.decode(map);
+        System.out.println(t.printAll());
     }
 
 

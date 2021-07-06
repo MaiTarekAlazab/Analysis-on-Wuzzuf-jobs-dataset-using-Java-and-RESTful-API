@@ -97,6 +97,18 @@ public class ModelController {
         return map;
     }
 
+    @GetMapping(value = "/factorize")
+    public String factorizeAndGetData()  throws IOException {
+        mDF.factorizeYears();
+        Table t = mDF.getT_clean();
+        //Encoder
+        TableEncoder Tencoder = new TableEncoder();
+        JSONEncoder Jencoder = new JSONEncoder();
+        Map<String, List<String>> map = Tencoder.encode(t);
+        String toSend = Jencoder.covertFromObjectToJson(map);
+        return toSend;
+    }
+
 
 
 
