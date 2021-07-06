@@ -27,6 +27,12 @@ public class Client {
         c.getSkills();
         System.out.println("\nthis is the output of factorize");
         c.getCleanedDataAfterFactorizing();
-        //c.getImg();
+        System.out.println("this is the output of get pie");
+        c.getpiechart();
+        System.out.println("this is the output of get bar1");
+        c.getbarchart1();
+        System.out.println("this is the output of get bar2");
+        c.getbarchart2();
+
     }
 }
