@@ -63,6 +63,9 @@ public class ManipulateDF {
         cleanDataframe();
         return t_clean;
     }
+    public Table getT_clean_first(int first) {
+        return t_clean.first(first);
+    }
 
     private Map<String, Long> getSortedMap(List<String> l) {
         Map<String, Long> frequencyMap =
@@ -150,7 +153,7 @@ public class ManipulateDF {
 
         for (String v : yearsExp) {
             Integer temp = null;
-            if (v.replaceAll("[^0-9]", "")== ""){
+            if (v.replaceAll("[^0-9]", "").equals("")){
                 temp =0;
             }else{ temp = Integer.parseInt(v.replaceAll("[^0-9]", "")); }
             if (yearsMap.containsKey(temp)==false){
@@ -160,11 +163,8 @@ public class ManipulateDF {
             }
             else{ yearValues.add(yearsMap.get(temp)); }
         }
-
-
         DoubleColumn yearsColumn = DoubleColumn.create("factorized years", yearValues);
         t_clean.addColumns (yearsColumn);
-        System.out.println(t_clean.first(10));
     }
 
 

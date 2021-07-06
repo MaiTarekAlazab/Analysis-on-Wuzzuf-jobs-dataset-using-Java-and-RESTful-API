@@ -25,8 +25,8 @@ public class Client {
         c.getMostAreas();
         System.out.println("\nthis is the output of get skills");
         c.getSkills();
-        //System.out.println("\nthis is the output of factorize");
-        //c.getCleanedDataAfterFactorizing();
+        System.out.println("\nthis is the output of factorize");
+        c.getCleanedDataAfterFactorizing();
         //c.getImg();
     }
 }

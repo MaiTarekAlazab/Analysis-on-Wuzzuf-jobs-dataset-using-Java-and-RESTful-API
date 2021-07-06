@@ -1,18 +1,13 @@
 package restfulservice.controller;
 
 import restfulservice.model.ManipulateDF;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
-import restfulservice.utils.JSONEncoder;
 import tech.tablesaw.api.Table;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import restfulservice.model.ManipulateDF;
 import restfulservice.utils.TableEncoder;
 
 @RestController
@@ -92,15 +87,13 @@ public class ModelController {
     }
 
     @GetMapping(value = "/factorize")
-    public String factorizeAndGetData()  throws IOException {
+    public Map<String, List<String>>  factorizeAndGetData()  throws IOException {
         mDF.factorizeYears();
-        Table t = mDF.getT_clean();
+        Table t = mDF.getT_clean_first(10);
         //Encoder
         TableEncoder Tencoder = new TableEncoder();
-        JSONEncoder Jencoder = new JSONEncoder();
         Map<String, List<String>> map = Tencoder.encode(t);
-        String toSend = Jencoder.covertFromObjectToJson(map);
-        return toSend;
+        return map;
     }
 
 

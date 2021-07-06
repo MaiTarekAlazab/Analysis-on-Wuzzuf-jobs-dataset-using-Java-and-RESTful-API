@@ -1,10 +1,6 @@
 package restfulconsumer.consumer;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import restfulconsumer.utils.Image;
-import restfulconsumer.utils.JSONDecoder;
 import restfulconsumer.utils.TableDecoder;
-import restfulconsumer.utils.UtilBase64Image;
 import tech.tablesaw.api.Table;
 
 import java.io.IOException;
@@ -89,11 +85,9 @@ public class Consumer {
     }
     public void getCleanedDataAfterFactorizing() throws IOException {
         final String uri = "http://localhost:8080/data/factorize";
-        String response = restTemplate.getForObject(uri, String.class);
+        Map<String,List<String>> response = restTemplate.getForObject(uri, Map.class);
         TableDecoder Tdecoder = new TableDecoder();
-        JSONDecoder Jdecoder = new JSONDecoder();
-        Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
-        Table t = Tdecoder.decode(map);
+        Table t = Tdecoder.decode(response);
         System.out.println(t.printAll());
     }
 
