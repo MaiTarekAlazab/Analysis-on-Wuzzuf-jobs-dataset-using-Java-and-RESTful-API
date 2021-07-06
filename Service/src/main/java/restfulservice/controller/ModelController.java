@@ -33,7 +33,6 @@ public class ModelController {
     @GetMapping(value = "/disdata")
     public String getDisplayData()  throws IOException {
         Table t = mDF.displayDataAsTable();
-
         //encoding
         TableEncoder Tencoder = new TableEncoder();
         JSONEncoder Jencoder = new JSONEncoder();

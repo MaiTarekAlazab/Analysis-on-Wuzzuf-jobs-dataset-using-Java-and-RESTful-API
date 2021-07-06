@@ -15,7 +15,7 @@ public class Client {
         c.getStructure();
         System.out.println("this is the output of get Summary");
         c.getSummary();
-        System.out.println("this is the output of get Clean");
+        //System.out.println("this is the output of get Clean");
         //c.getClean();
         System.out.println("this is the output of get Job");
         c.getJob();

@@ -33,8 +33,8 @@ public class Consumer {
         JSONDecoder Jdecoder = new JSONDecoder();
         Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
         System.out.println(map);
-        //Table t = Tdecoder.decode(map);
-        //System.out.println(t.printAll());
+        Table t = Tdecoder.decode(map);
+        System.out.println(t.printAll());
     }
 
     public void getStructure() throws IOException {
@@ -46,8 +46,8 @@ public class Consumer {
         JSONDecoder Jdecoder = new JSONDecoder();
         Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
         System.out.println(map);
-        //Table t = Tdecoder.decode(map);
-        //System.out.println(t.printAll());
+        Table t = Tdecoder.decode(map);
+        System.out.println(t.printAll());
     }
 
     public void getSummary() throws IOException {
@@ -59,8 +59,8 @@ public class Consumer {
         JSONDecoder Jdecoder = new JSONDecoder();
         Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
         System.out.println(map);
-        //Table t = Tdecoder.decode(map);
-        //System.out.println(t.printAll());
+        Table t = Tdecoder.decode(map);
+        System.out.println(t.printAll());
     }
 
     //unfinished
