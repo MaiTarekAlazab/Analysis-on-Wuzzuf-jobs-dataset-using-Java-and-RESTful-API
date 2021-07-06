@@ -100,7 +100,7 @@ public class ManipulateDF {
         t_clean.addColumns (mappedCompanyColumn);
         }
 
-    public void generatePieChart(String col){
+    public void generatePieChart(String col) throws IOException {
 
             Map<String, Long> MapSorted = getSortedMap(t_clean.stringColumn(col).asList());
             if (t_clean.columnNames().contains("Company_agg") == false){
@@ -113,12 +113,13 @@ public class ManipulateDF {
             MapSorted.forEach((k, v) -> pie.addSeries(k, v));
             pie.getStyler().setLegendPosition(Styler.LegendPosition.InsideNE);
             pie.getStyler().setHasAnnotations(true);
-            new SwingWrapper(pie).displayChart();
+            BitmapEncoder.saveBitmap(pie, "./src/main/resources/Sample1", BitmapEncoder.BitmapFormat.PNG);
+            //new SwingWrapper(pie).displayChart();
             System.out.println("The number of jobs from each company:");
             System.out.println(MapSorted);
     }
 
-    public void generateBarChart ( String col, String graphTitle, String xLabel,String yLabel) {
+    public void generateBarChart ( String col, String graphTitle,String img_name, String xLabel,String yLabel) throws IOException {
         Map<String, Long> frequencyMapSorted = getSortedMap(t_clean.stringColumn(col).asList()).entrySet().stream().limit(10).collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
         ArrayList<String> keyList = new ArrayList<String>(frequencyMapSorted.keySet());
         ArrayList<Long> valueList = new ArrayList<Long>(frequencyMapSorted.values());
@@ -126,7 +127,8 @@ public class ManipulateDF {
         chart.addSeries(graphTitle, keyList, valueList);
         chart.getStyler().setHasAnnotations(true);
         chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNE);
-        new SwingWrapper(chart).displayChart();
+        BitmapEncoder.saveBitmap(chart, "./src/main/resources/"+img_name, BitmapEncoder.BitmapFormat.PNG);
+        //new SwingWrapper(chart).displayChart();
         System.out.println("The most popular job " + col.toLowerCase() + "s:");
         System.out.println(frequencyMapSorted);
     }

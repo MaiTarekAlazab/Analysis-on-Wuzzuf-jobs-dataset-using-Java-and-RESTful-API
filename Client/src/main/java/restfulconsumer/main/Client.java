@@ -23,6 +23,14 @@ public class Client {
         c.getMostTitles();
         System.out.println("this is the output of get Areas");
         c.getMostAreas();
+        System.out.println("this is the output of get Image");
         //c.getImg();
+        System.out.println("this is the output of get pie");
+        c.getpiechart();
+        System.out.println("this is the output of get bar1");
+        c.getbarchart1();
+        System.out.println("this is the output of get bar2");
+        c.getbarchart2();
+
     }
 }

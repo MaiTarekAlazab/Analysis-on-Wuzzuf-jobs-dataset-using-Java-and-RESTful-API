@@ -89,11 +89,49 @@ public class Consumer {
         System.out.println(response);
     }
     public void getMostAreas() throws IOException {
-        final String uri = "http://localhost:8080/data/titles";
+        final String uri = "http://localhost:8080/data/Areas";
         Map response = restTemplate.getForObject(uri, Map.class);
         System.out.println(response);
     }
+    public void getpiechart() throws IOException {
+        String getUrl = "http://localhost:8080/data/pie";
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity getResponse = restTemplate.getForEntity(getUrl, Image.class);
 
+        if(getResponse.getBody() != null){
+            Image image1 = (Image) getResponse.getBody();
+            UtilBase64Image.decoder(image1.getData(), "src/main/resources/images/" + image1.getName() +".jpg");
+            System.out.println("Done!");
+        }else{
+            System.out.println("Response for Get Request: NULL");
+        }
+    }
+    public void getbarchart1() throws IOException {
+        String getUrl = "http://localhost:8080/data/bar1";
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity getResponse = restTemplate.getForEntity(getUrl, Image.class);
+
+        if(getResponse.getBody() != null){
+            Image image2 = (Image) getResponse.getBody();
+            UtilBase64Image.decoder(image2.getData(), "src/main/resources/images/" + image2.getName() +".jpg");
+            System.out.println("Done!");
+        }else{
+            System.out.println("Response for Get Request: NULL");
+        }
+    }
+   public void getbarchart2() throws IOException {
+        String getUrl = "http://localhost:8080/data/bar2";
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity getResponse = restTemplate.getForEntity(getUrl, Image.class);
+
+        if(getResponse.getBody() != null){
+            Image image3 = (Image) getResponse.getBody();
+            UtilBase64Image.decoder(image3.getData(), "src/main/resources/images/" + image3.getName() +".jpg");
+            System.out.println("Done!");
+        }else{
+            System.out.println("Response for Get Request: NULL");
+        }
+    }
 
 
 
@@ -105,19 +143,7 @@ public class Consumer {
         System.out.println(t);
     }*/
 
-    /*public static void getImg() {
-        String getUrl = "http://localhost:8080/async/2";
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity getResponse = restTemplate.getForEntity(getUrl, Image.class);
 
-        if(getResponse.getBody() != null){
-            Image image = (Image) getResponse.getBody();
-            UtilBase64Image.decoder(image.getData(), "src/main/resources/images/" + image.getName() +".jpg");
-            System.out.println("Done!");
-        }else{
-            System.out.println("Response for Get Request: NULL");
-        }
-    }*/
 
 
 
