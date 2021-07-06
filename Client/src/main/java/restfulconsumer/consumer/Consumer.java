@@ -26,39 +26,31 @@ public class Consumer {
 
     public void getData() throws IOException {
         final String uri = "http://localhost:8080/data/disdata";
-        String response = restTemplate.getForObject(uri, String.class);
+        Map<String,List<String>> response = restTemplate.getForObject(uri, Map.class);
 
         //decode
         TableDecoder Tdecoder = new TableDecoder();
-        JSONDecoder Jdecoder = new JSONDecoder();
-        Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
-        System.out.println(map);
-        Table t = Tdecoder.decode(map);
+        Table t = Tdecoder.decode(response);
         System.out.println(t.printAll());
     }
 
     public void getStructure() throws IOException {
         final String uri = "http://localhost:8080/data/structure";
-        String response = restTemplate.getForObject(uri, String.class);
+        Map<String, List<String>>  response = restTemplate.getForObject(uri, Map.class);
 
         //decode
         TableDecoder Tdecoder = new TableDecoder();
-        JSONDecoder Jdecoder = new JSONDecoder();
-        Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
-        System.out.println(map);
-        Table t = Tdecoder.decode(map);
+        Table t = Tdecoder.decode(response);
         System.out.println(t.printAll());
     }
 
     public void getSummary() throws IOException {
         final String uri = "http://localhost:8080/data/summary";
-        String response = restTemplate.getForObject(uri, String.class);
+        Map<String, List<String>> response = restTemplate.getForObject(uri, Map.class);
 
         //decode
         TableDecoder Tdecoder = new TableDecoder();
-        JSONDecoder Jdecoder = new JSONDecoder();
-        Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
-        Table t = Tdecoder.decode(map);
+        Table t = Tdecoder.decode(response);
         System.out.println(t.printAll());
     }
 

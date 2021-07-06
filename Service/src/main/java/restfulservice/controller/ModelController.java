@@ -31,37 +31,31 @@ public class ModelController {
     }
 
     @GetMapping(value = "/disdata")
-    public String getDisplayData()  throws IOException {
+    public Map<String,List<String>> getDisplayData()  throws IOException {
         Table t = mDF.displayDataAsTable();
         //encoding
         TableEncoder Tencoder = new TableEncoder();
-        JSONEncoder Jencoder = new JSONEncoder();
         Map<String, List<String>> map = Tencoder.encode(t);
-        String toSend = Jencoder.covertFromObjectToJson(map);
-        return toSend;
+        return map;
     }
 
     @GetMapping(value = "/structure")
-    public String getDataStructure()  throws IOException {
+    public Map<String, List<String>> getDataStructure()  throws IOException {
         Table t = mDF.displayStructure();
 
         //encoding
         TableEncoder Tencoder = new TableEncoder();
-        JSONEncoder Jencoder = new JSONEncoder();
         Map<String, List<String>> map = Tencoder.encode(t);
-        String toSend = Jencoder.covertFromObjectToJson(map);
-        return toSend;
+        return map;
     }
 
     @GetMapping(value = "/summary")
-    public String getDataSummary()  throws IOException {
+    public Map<String, List<String>> getDataSummary()  throws IOException {
         Table t = mDF.displaySummary();
         //encoding
         TableEncoder Tencoder = new TableEncoder();
-        JSONEncoder Jencoder = new JSONEncoder();
         Map<String, List<String>> map = Tencoder.encode(t);
-        String toSend = Jencoder.covertFromObjectToJson(map);
-        return toSend;
+        return map;
     }
 
 
