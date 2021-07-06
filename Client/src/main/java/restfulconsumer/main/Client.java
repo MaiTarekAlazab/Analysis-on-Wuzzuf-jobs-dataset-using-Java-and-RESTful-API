@@ -7,22 +7,24 @@ import java.io.IOException;
 public class Client {
     public static void main(String[] args) throws IOException {
         Consumer c = new Consumer();
-        System.out.println("this is the output of get hello");
+        System.out.println("\nthis is the output of get hello");
         c.getHello();
-        System.out.println("this is the output of get Data");
+        System.out.println("\nthis is the output of get Data");
         c.getData();
-        System.out.println("this is the output of get Structure");
+        System.out.println("\nthis is the output of get Structure");
         c.getStructure();
-        System.out.println("this is the output of get Summary");
+        System.out.println("\nthis is the output of get Summary");
         c.getSummary();
-        //System.out.println("this is the output of get Clean");
-        //c.getClean();
-        System.out.println("this is the output of get Job");
+        System.out.println("\nthis is the output of get Clean");
+        c.getClean();
+        System.out.println("\nthis is the output of get Job");
         c.getJob();
-        System.out.println("this is the output of get Titles");
+        System.out.println("\nthis is the output of get Titles");
         c.getMostTitles();
-        System.out.println("this is the output of get Areas");
+        System.out.println("\nthis is the output of get Areas");
         c.getMostAreas();
+        System.out.println("\nthis is the output of get skills");
+        c.getSkills();
         //c.getImg();
     }
 }

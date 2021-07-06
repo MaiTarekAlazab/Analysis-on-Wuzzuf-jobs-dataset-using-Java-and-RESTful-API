@@ -63,20 +63,11 @@ public class Consumer {
         System.out.println(t.printAll());
     }
 
-    //unfinished
-    /*public void getClean() throws IOException {
+    public void getClean() throws IOException {
         final String uri = "http://localhost:8080/data/clean";
-        String response = restTemplate.getForObject(uri, String.class);
-
-
-        //decode
-        TableDecoder Tdecoder = new TableDecoder();
-        JSONDecoder Jdecoder = new JSONDecoder();
-        Map<String, List<String>> map = Jdecoder.covertFromJsonToObject(response, Map.class);
-        System.out.println(map);
-        //Table t = Tdecoder.decode(map);
-        //System.out.println(t.printAll());
-    }*/
+        Map response = restTemplate.getForObject(uri, Map.class);
+        System.out.println(response);
+    }
 
     public void getJob() throws IOException {
         final String uri = "http://localhost:8080/data/job";
@@ -90,6 +81,11 @@ public class Consumer {
     }
     public void getMostAreas() throws IOException {
         final String uri = "http://localhost:8080/data/titles";
+        Map response = restTemplate.getForObject(uri, Map.class);
+        System.out.println(response);
+    }
+    public void getSkills() throws IOException {
+        final String uri = "http://localhost:8080/data/skills";
         Map response = restTemplate.getForObject(uri, Map.class);
         System.out.println(response);
     }

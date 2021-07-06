@@ -64,20 +64,11 @@ public class ModelController {
         return toSend;
     }
 
-    //unfinished
-    @GetMapping(value = "/clean")
-    public void getCleanData()  throws IOException {
-        Table t = mDF.getT();
-        Table t_clean = mDF.getT_clean();
 
-        System.out.println("Shape of the original dataframe "+t.shape());
-        System.out.println("Shape of the cleaned dataframe "+ t_clean.shape());
-                //encoding
-        //TableEncoder Tencoder = new TableEncoder();
-        //JSONEncoder Jencoder = new JSONEncoder();
-        //Map<String, List<String>> map = Tencoder.encode(t);
-        //String toSend = Jencoder.covertFromObjectToJson(map);
-        //return toSend;
+    @GetMapping(value = "/clean")
+    public Map<String,String> getCleanData()  throws IOException {
+        Map<String, String> map = mDF.cleanDataframe();
+        return map;
     }
 
     @GetMapping(value = "/job")
@@ -99,6 +90,13 @@ public class ModelController {
         Map<String, Long> map = mDF.getAreas();
         return map;
     }
+
+    @GetMapping(value = "/skills")
+    public Map<String, Long> getSkills()  throws IOException {
+        Map<String, Long> map = mDF.getSkills(10);
+        return map;
+    }
+
 
 
 

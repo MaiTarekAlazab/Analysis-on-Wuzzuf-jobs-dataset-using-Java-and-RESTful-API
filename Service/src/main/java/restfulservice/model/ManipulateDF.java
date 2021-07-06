@@ -44,16 +44,15 @@ public class ManipulateDF {
     }
 
 
-    //ADDED
-    public int getRowCount(){
-        return t.rowCount();
-    }
-
-    public void cleanDataframe(){
+    public Map<String, String> cleanDataframe(){
         Table t_temp = t.dropRowsWithMissingValues();
         t_clean = t_temp.dropDuplicateRows();
-        //System.out.println("Shape of the original dataframe "+t.shape());
-        //System.out.println("Shape of the cleaned dataframe "+ t_clean.shape());
+        String shape = t.shape();
+        String shapeClean = t_clean.shape();
+        Map<String, String> map = new LinkedHashMap<>();
+        map.put("original",shape);
+        map.put("cleaned", shapeClean);
+        return map;
     }
 
     public Table getT() {
@@ -131,15 +130,16 @@ public class ManipulateDF {
         System.out.println(frequencyMapSorted);
     }
 
-    public void getSkills(Integer i){
+    public Map<String, Long> getSkills(Integer i){
         // input is the number of skills that the client want to see
         List<String> skills = t_clean.stringColumn("skills").asList().stream().
                 flatMap(row-> Arrays.stream(row.split(","))).map(String::trim).collect(Collectors.toList());
         Map<String, Long> frequencyMap = getSortedMap(skills).entrySet().stream().limit(i).collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));;
-        System.out.println("Most important required skills: ");
+        /*System.out.println("Most important required skills: ");
         for (Map.Entry<String, Long> entry: frequencyMap.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
-        }
+        }*/
+        return frequencyMap;
 
     }
     public void factorizeYears(){
