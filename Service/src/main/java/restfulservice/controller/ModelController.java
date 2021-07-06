@@ -9,12 +9,11 @@ import tech.tablesaw.api.Table;
 
 import java.io.IOException;
 
+@RestController
 public class ModelController {
 
     @GetMapping(value = "/test")
-    public Table df()  throws IOException {
-        ManipulateDF df = new ManipulateDF("src/main/resources/Wuzzuf_Jobs.csv");
-        Table t = Table.read().csv("src/main/resources/Wuzzuf_Jobs.csv");
-        return t;
+    public String test()  throws IOException {
+        return "Hello";
     }
 }
