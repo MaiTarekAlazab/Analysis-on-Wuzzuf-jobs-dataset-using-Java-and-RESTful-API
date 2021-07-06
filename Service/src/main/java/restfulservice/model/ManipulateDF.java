@@ -31,9 +31,18 @@ public class ManipulateDF {
         System.out.println(t.first(10));
     }
 
+    public Table displayDataAsTable(){
+        return t.first(10);
+    }
+
     public Table displayStructure(){
         return t.structure();
     }
+
+    public Table displaySummary(){
+        return t.summary();
+    }
+
 
     //ADDED
     public int getRowCount(){
@@ -43,9 +52,17 @@ public class ManipulateDF {
     public void cleanDataframe(){
         Table t_temp = t.dropRowsWithMissingValues();
         t_clean = t_temp.dropDuplicateRows();
-        System.out.println("Shape of the original dataframe "+t.shape());
-        System.out.println("Shape of the cleaned dataframe "+ t_clean.shape());
+        //System.out.println("Shape of the original dataframe "+t.shape());
+        //System.out.println("Shape of the cleaned dataframe "+ t_clean.shape());
+    }
 
+    public Table getT() {
+        return t;
+    }
+
+    public Table getT_clean() {
+        cleanDataframe();
+        return t_clean;
     }
 
     private Map<String, Long> getSortedMap(List<String> l) {
@@ -56,6 +73,19 @@ public class ManipulateDF {
                 .collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
         return frequencyMapSorted;
     }
+    public Map<String, Long> getJobCount() {
+        Map<String, Long> MapSorted = getSortedMap(t_clean.stringColumn("Company").asList());
+        return  MapSorted;
+    }
+    public Map<String, Long> getTitles() {
+        Map<String, Long> MapSorted = getSortedMap(t_clean.stringColumn("Title").asList()).entrySet().stream().limit(10).collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+        return  MapSorted;
+    }
+    public Map<String, Long> getAreas() {
+        Map<String, Long> MapSorted = getSortedMap(t_clean.stringColumn("Location").asList()).entrySet().stream().limit(10).collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));
+        return  MapSorted;
+    }
+
 
     private void aggCompanies(Map<String,Long> map){
         StringColumn mappedCompanyColumn = null;
@@ -69,10 +99,6 @@ public class ManipulateDF {
         mappedCompanyColumn = StringColumn.create ("Company_agg", mappedCompanyValues);
         t_clean.addColumns (mappedCompanyColumn);
         }
-
-
-
-
 
     public void generatePieChart(String col){
 
@@ -108,7 +134,7 @@ public class ManipulateDF {
     public void getSkills(Integer i){
         // input is the number of skills that the client want to see
         List<String> skills = t_clean.stringColumn("skills").asList().stream().
-                flatMap(row-> Arrays.stream(row.split(","))).collect(Collectors.toList());
+                flatMap(row-> Arrays.stream(row.split(","))).map(String::trim).collect(Collectors.toList());
         Map<String, Long> frequencyMap = getSortedMap(skills).entrySet().stream().limit(i).collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2, LinkedHashMap::new));;
         System.out.println("Most important required skills: ");
         for (Map.Entry<String, Long> entry: frequencyMap.entrySet()) {

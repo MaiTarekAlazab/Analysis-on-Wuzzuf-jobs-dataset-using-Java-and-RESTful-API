@@ -30,6 +30,18 @@ public class ModelController {
         return "Hello";
     }
 
+    @GetMapping(value = "/disdata")
+    public String getDisplayData()  throws IOException {
+        Table t = mDF.displayDataAsTable();
+
+        //encoding
+        TableEncoder Tencoder = new TableEncoder();
+        JSONEncoder Jencoder = new JSONEncoder();
+        Map<String, List<String>> map = Tencoder.encode(t);
+        String toSend = Jencoder.covertFromObjectToJson(map);
+        return toSend;
+    }
+
     @GetMapping(value = "/structure")
     public String getDataStructure()  throws IOException {
         Table t = mDF.displayStructure();
@@ -40,6 +52,53 @@ public class ModelController {
         Map<String, List<String>> map = Tencoder.encode(t);
         String toSend = Jencoder.covertFromObjectToJson(map);
         return toSend;
+    }
+
+    @GetMapping(value = "/summary")
+    public String getDataSummary()  throws IOException {
+        Table t = mDF.displaySummary();
+        //encoding
+        TableEncoder Tencoder = new TableEncoder();
+        JSONEncoder Jencoder = new JSONEncoder();
+        Map<String, List<String>> map = Tencoder.encode(t);
+        String toSend = Jencoder.covertFromObjectToJson(map);
+        return toSend;
+    }
+
+    //unfinished
+    @GetMapping(value = "/clean")
+    public void getCleanData()  throws IOException {
+        Table t = mDF.getT();
+        Table t_clean = mDF.getT_clean();
+
+        System.out.println("Shape of the original dataframe "+t.shape());
+        System.out.println("Shape of the cleaned dataframe "+ t_clean.shape());
+                //encoding
+        //TableEncoder Tencoder = new TableEncoder();
+        //JSONEncoder Jencoder = new JSONEncoder();
+        //Map<String, List<String>> map = Tencoder.encode(t);
+        //String toSend = Jencoder.covertFromObjectToJson(map);
+        //return toSend;
+    }
+
+    @GetMapping(value = "/job")
+    public Map<String, Long> getJobCounted()  throws IOException {
+        Table t_clean = mDF.getT_clean();
+        Map<String, Long> map = mDF.getJobCount();
+        return map;
+    }
+
+    @GetMapping(value = "/titles")
+    public Map<String, Long> getJobTitles()  throws IOException {
+        Table t_clean = mDF.getT_clean();
+        Map<String, Long> map = mDF.getTitles();
+        return map;
+    }
+    @GetMapping(value = "/areas")
+    public Map<String, Long> getJobAreas()  throws IOException {
+        Table t_clean = mDF.getT_clean();
+        Map<String, Long> map = mDF.getAreas();
+        return map;
     }
 
 

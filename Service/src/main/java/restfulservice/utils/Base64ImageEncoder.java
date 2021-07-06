@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.util.Base64;
 
 public class Base64ImageEncoder {
+    public Base64ImageEncoder() {
+
+    }
+
     public static String encoder(String imagePath) {
         File file = new File(imagePath);
         try (FileInputStream imageInFile = new FileInputStream(file)) {

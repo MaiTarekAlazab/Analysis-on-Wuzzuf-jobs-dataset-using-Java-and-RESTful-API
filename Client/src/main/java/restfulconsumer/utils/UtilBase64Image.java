@@ -5,8 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 
-public class Base64ImageDecoder {
-    public Base64ImageDecoder() {
+public class UtilBase64Image {
+    public UtilBase64Image() {
     }
 
     public static void decoder(String base64Image, String pathFile) {
