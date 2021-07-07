@@ -16,7 +16,7 @@ WUZZUF is the #1 Career Destination in Egypt serving more than 500,000 job seeke
    5. Printing skills one by one and how many each repeated and order the output to find out the most important skills required?
    6. Generating graphs (bar chart, pie chart, etc) that displays the above insights.
  
-[Sample Output](Client/src/main/resources/images)
+[Sample Output](Client/src/main/resources/images/pie.jpg)
 There is two options for displaying the project information 
 
 1. First run the service then through web page, try these links according to the data you want:
