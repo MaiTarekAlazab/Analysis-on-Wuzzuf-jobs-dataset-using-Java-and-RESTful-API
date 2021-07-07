@@ -54,6 +54,7 @@ WUZZUF is the #1 Career Destination in Egypt serving more than 500,000 job seeke
 ```
 ## Installing the project
 **This is a maven project with springbot dependency, jdk 11**
+
 There is two options for displaying the project information 
 ### 1- Using the service only 
 Run the [service](Service/src/main/java/restfulservice) then through web page, try these links according to the data you want:
